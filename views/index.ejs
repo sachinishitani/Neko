@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/stylesheets/index.css">
+        <title><%= title %></title>
+    </head>
+    <body class="container">
+        <%- include('header'); %>
+        <div class="main2">
+            <%= content %> かなかな<%= title %>
+            <p><h2>はじまりのページ</h2></p>
+            <div>
+                <img src="/images/neko.png" alt="現場猫">
+            </div>
+        </div>
+    </body>
 </html>

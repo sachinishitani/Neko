@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/stylesheets/other.css">
+        <title>あざー</title>
+    </head>
+    <body class="container">
+        <%- include('header'); %>
+        <div role="main">
+            <div>
+            </div>
+            <div class="management_container">
+                <table border="1" bordercolor="#c2c2c2" class="management_table">
+                    <tr>
+                        <td colspan="7" bgcolor="#FF97C2"><font size ="5">('ω')ねこさんたちについて('ω')</font></td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="#C299FF">ID</th>
+                        <th bgcolor="#C299FF">名前</th>
+                        <th bgcolor="#C299FF">年齢</th>
+                        <th bgcolor="#C299FF">ご飯</th>
+                        <th bgcolor="#C299FF">性格</th>
+                        <th>へんしゅう</th>
+                        <th>さくじょ</th>
+                    </tr>
+                        <% for(var i in content){ %>
+                        <tr>
+                            <% var obj = content[i]; %>
+                            <td><%= obj.id %></td>
+                            <td><%= obj.name %></td>
+                            <td><%= obj.age %></td>
+                            <td><%= obj.food %></td>
+                            <td><%= obj.personality %></td>
+                            <td>
+                                <a href="../edit/<%= obj.id %>">編集</a>
+                            </td>
+                            <td><form action="../other/<%= obj.id %>/delete" method="POST">
+                                    <input type="hidden" name="id" value="<%= obj.id %>">
+                                    <input type="submit" value="削除">
+                                </form>
+                            </td>
+                        </tr>
+                            <% } %>
+                </table>
+            </div>
+        </div>
+        <div class="neko">
+            <a href="../add" class="btn btn-malformation btn-malformation--pastel2">とうろく</a>
+            <a href="../index" class="btn btn-malformation btn-malformation--pastel">おうち</a>
+        </div>
+    </body>
+</html>

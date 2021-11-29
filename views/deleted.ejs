@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>でりーと</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <head>
+    <h1>でりーと</h1>
+  </head>
+  <div role="main">
+    <table>
+      <tr>
+        <th>NAME</th>
+        <td><%= # %></td>
+      </tr>
+      <tr>
+        <th>age</th>
+        <td><%= # %></td>
+      </tr>
+      <tr>
+        <th>food</th>
+        <td><%= # %></td>
+      </tr>
+    </table>
+    <form action="/deleted/post" method="post">
+      <input type="hidden" name="id" value="<%=#%>">
+      <p><input type="submit" value="送信"></p>
+    </form>
+  </div>
+</body>
+
+</html>
