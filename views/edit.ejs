@@ -8,31 +8,34 @@
     <body class="container1">
         <%- include('header'); %>
         <div class="main12">
-            <form action="../edit/update" method="POST">
-                <input type="hidden" name="id" value="<%= form.id %>">
+            <form action="../edit/<%= content.id %>/update" method="POST">
                 <div class="form-group">
-                    <label for="name">名前</label>
-                    <input type="text" id="name" name="name" class="form-control"  value="<%= form.name %>">
+                    <label for="id"><span class="label label-danger"></span> ID</label>
+                    <input type="text" id="id" name="id" class="form-control" value="<%= content.id %>" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="age">年齢</label>
-                    <input type="number" id="age" name="age" class="form-control" value="<%= form.age %>">
+                    <label for="name"><span class="label label-danger"></span>名前</label>
+                    <input type="text" id="name" name="name" class="form-control"  value="<%= content.name %>">
                 </div>
                 <div class="form-group">
-                    <label for="food">ご飯</label>
-                    <input type="text" id="food" name="food" class="form-control"  value="<%= form.food %>">
+                    <label for="age"><span class="label label-danger"></span>年齢</label>
+                    <input type="number" id="age" name="age" class="form-control" value="<%= content.age %>">
                 </div>
                 <div class="form-group">
-                    <label for="personality">性格</label>
-                    <input type="text" id="personality" name="personality" class="form-control" value="<%= form.personality %>">
+                    <label for="food"><span class="label label-danger"></span>ご飯</label>
+                    <input type="text" id="food" name="food" class="form-control"  value="<%= content.food %>">
                 </div>
                 <div class="form-group">
-                    <label for="favoriteToys">おもちゃ</label>
-                    <input type="text" id="favoriteToys" name="favoriteToys" class="form-control"  value="<%= form.favoriteToys %>">
+                    <label for="personality"><span class="label label-danger"></span>性格</label>
+                    <input type="text" id="personality" name="personality" class="form-control" value="<%= content.personality %>">
                 </div>
                 <div class="form-group">
-                    <label for="favoriteSnack">おやつ</label>
-                    <input type="text" id="favoriteSnack" name="favoriteSnack" class="form-control" value="<%= form.favoriteSnack %>">
+                    <label for="favoriteToys"><span class="label label-danger"></span>おもちゃ</label>
+                    <input type="text" id="favoriteToys" name="favoriteToys" class="form-control"  value="<%= content.favoriteToys %>">
+                </div>
+                <div class="form-group">
+                    <label for="favoriteSnack"><span class="label label-danger"></span>おやつ</label>
+                    <input type="text" id="favoriteSnack" name="favoriteSnack" class="form-control" value="<%= content.favoriteSnack %>">
                 </div>
                 <div>
                     <input type="submit" value="更新">
