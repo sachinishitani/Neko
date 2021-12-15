@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/stylesheets/edit.css">
+        <title>編集ページ</title>
+    </head>
+    <body class="container1">
+        <%- include('header'); %>
+        <div class="main12">
+            <form action="../edit/update" method="POST">
+                <input type="hidden" name="id" value="<%= form.id %>">
+                <div class="form-group">
+                    <label for="name">名前</label>
+                    <input type="text" id="name" name="name" class="form-control"  value="<%= form.name %>">
+                </div>
+                <div class="form-group">
+                    <label for="age">年齢</label>
+                    <input type="number" id="age" name="age" class="form-control" value="<%= form.age %>">
+                </div>
+                <div class="form-group">
+                    <label for="food">ご飯</label>
+                    <input type="text" id="food" name="food" class="form-control"  value="<%= form.food %>">
+                </div>
+                <div class="form-group">
+                    <label for="personality">性格</label>
+                    <input type="text" id="personality" name="personality" class="form-control" value="<%= form.personality %>">
+                </div>
+                <div class="form-group">
+                    <label for="favoriteToys">おもちゃ</label>
+                    <input type="text" id="favoriteToys" name="favoriteToys" class="form-control"  value="<%= form.favoriteToys %>">
+                </div>
+                <div class="form-group">
+                    <label for="favoriteSnack">おやつ</label>
+                    <input type="text" id="favoriteSnack" name="favoriteSnack" class="form-control" value="<%= form.favoriteSnack %>">
+                </div>
+                <div>
+                    <input type="submit" value="更新">
+                </div>
+            </form>
+        </div>
+        <div class="neko">
+            <a href="../index" class="btn btn-malformation btn-malformation--pastel">おうち</a>
+        </div>
+        </div>
+    </body>
+</html>

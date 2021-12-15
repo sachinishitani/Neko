@@ -1,26 +1,117 @@
+'use strict'
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+const app = express();
+//const passport = require('./auth');
+var session = require('express-session');
+const flash = require('connect-flash');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var hello = require('./routes/hello');
+var other = require('./routes/other');
+var add = require('./routes/add');
+var edit = require('./routes/edit');
+var deleted = require('./routes/deleted');
+var index = require('./routes/index');
+var otherManagement = require('./routes/other-management');
+var mysql = require('mysql');
+var login = require('./routes/login');
+/////////////////////////////////////////////
+const authMiddleware = (req, res, next) => {
+  if(req.isAuthenticated()) { // ログインしてるかチェック
 
-var app = express();
+    next();
 
+  } else {
+
+    res.redirect(302, '/login');
+
+  }
+};
+
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'neko'
+});
+
+connection.connect((err) => {
+  if (err) {
+    console.log('error connecting: ' + err.stack);
+    return;
+  }
+  console.log('success');
+});
+
+connection.query(
+ 'SELECT * FROM nekos',
+  (error, results) => {
+    console.log(results);
+       //res.render('hello2.ejs');
+  }
+);
+
+
+////////////////////////////////////
+
+//app.use(session({
+//  secret: 'secret',
+//  resave: false,
+// saveUninitialized: false,
+//  cookie:{
+//httpOnly: true,
+// secure: false,
+//  maxage: 1000 * 60 * 30
+//  }
+//}); 
+
+/////////////////////////////////////////////////////////////////////
+var session_opt = {
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 60 * 60 * 1000 }
+};
+app.use(session(session_opt));
+//////20211203/////ここから///
+app.use(session({
+  secret: 'YOUR-SECRET-STRING',
+  resave: true,
+  saveUninitialized: true
+}));
+//app.use(passport.initialize());
+//app.use(passport.session());
+//////////ここまで///
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/hello', hello);
+app.use('/other', other);
+app.use('/index', index);
+app.use('/other-management',otherManagement);
+app.use('/add', add);
+app.use('/edit', edit);
+app.use('/deleted', deleted);
+app.use('/login', login);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,15 +132,22 @@ app.use(function(err, req, res, next) {
 // localhostでhttps接続の設定
 const https = require('https');
 const fs = require('fs');
+const ejs = require('ejs');
+const router = require('./routes/index');
+// const url = require('url');
+
 const port = 3000;
 const httpsOptions = {
   key:  fs.readFileSync('./security/cert.key'),
   cert: fs.readFileSync('./security/cert.pem')
 };
+
+
 const server = https.createServer(httpsOptions, app)
   .listen(port, () => {
   console.log('server running at ' + port);
 });
 // localhostでhttps接続の設定 ここまで
+
 
 module.exports = app;

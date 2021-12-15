@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<lang="ja">
+<body>
+    <head>
+        <meta charset=UTF-8>
+        <title>猫さんのお部屋</title>
+        <link rel="stylesheet" href="/stylesheets/style.css">
+    </head>
+    <%- include('header'); %>
+    <div class="main">
+        <table class="table">
+        </table>
+    </div>
+    <div class="main2">
+        <p class="h6"><%- content %></p>
+        <form method="post" action="/hello/post">
+            <div class="form-group">
+                <label for="msg">Message:</label>
+                <input type="text" name="message" id="msg" class="form-control">
+            </div>
+            <input type="submit" value="送信" class="btn btn-primary">
+        </form>
+        <br>
+        <a href="../add">新規作成</a>
+        <a href="../other">飼い主ページを見てみよう</a>
+    </div>
+</body>
+</html>
