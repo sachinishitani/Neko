@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>NEKO INDEX</title>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+  </head>
+  <body>
+    <div class="sign">
+      <%- include('header'); %>
+      <div class="container-login">
+        <div class="panel">
+          <h2>新規登録画面</h2>
+          <form action="/login/post" method="post">
+            <p>ユーザー名</p>
+            <input type="text" name="username" value="">
+            <p>メールアドレス</p>
+            <input type="text" name="email" value="">
+            <p>パスワード</p>
+            <input type="password" name="password" value="">
+            <p><input type="submit" value="ログイン"></p>
+          </form>
+            <a href="../index" class="btn btn-malformation btn-malformation--pastel">おうち</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
