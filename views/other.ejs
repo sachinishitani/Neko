@@ -33,9 +33,9 @@
                             <td><%= obj.food %></td>
                             <td><%= obj.personality %></td>
                             <td>
-                                <a href="../edit/<%= obj.id %>">編集</a>
+                                <a href="../edit?id=<%= obj.id %>">編集</a>
                             </td>
-                            <td><form action="../other/<%= obj.id %>/delete" method="POST">
+                            <td><form action="../other/delete" method="POST">
                                     <input type="hidden" name="id" value="<%= obj.id %>">
                                     <input type="submit" value="削除">
                                 </form>

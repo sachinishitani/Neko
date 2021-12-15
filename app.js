@@ -6,7 +6,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
 const app = express();
+//const passport = require('./auth');
+var session = require('express-session');
+const flash = require('connect-flash');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,9 +23,19 @@ var index = require('./routes/index');
 var otherManagement = require('./routes/other-management');
 var mysql = require('mysql');
 var login = require('./routes/login');
-const session = require('express-session');//★
+/////////////////////////////////////////////
+const authMiddleware = (req, res, next) => {
+  if(req.isAuthenticated()) { // ログインしてるかチェック
 
-/////////////////////////////////////////////////////
+    next();
+
+  } else {
+
+    res.redirect(302, '/login');
+
+  }
+};
+
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -47,7 +61,18 @@ connection.query(
 );
 
 
+////////////////////////////////////
 
+//app.use(session({
+//  secret: 'secret',
+//  resave: false,
+// saveUninitialized: false,
+//  cookie:{
+//httpOnly: true,
+// secure: false,
+//  maxage: 1000 * 60 * 30
+//  }
+//}); 
 
 /////////////////////////////////////////////////////////////////////
 var session_opt = {
@@ -57,14 +82,22 @@ var session_opt = {
   cookie: { maxAge: 60 * 60 * 1000 }
 };
 app.use(session(session_opt));
-
+//////20211203/////ここから///
+app.use(session({
+  secret: 'YOUR-SECRET-STRING',
+  resave: true,
+  saveUninitialized: true
+}));
+//app.use(passport.initialize());
+//app.use(passport.session());
+//////////ここまで///
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
