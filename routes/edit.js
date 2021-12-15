@@ -5,7 +5,6 @@ const { check, validationResult } = require('express-validator');
 const Nekosan = require('../models/nekosan');
 const db = require('../models/index');
 const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
