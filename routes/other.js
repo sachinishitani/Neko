@@ -1,55 +1,72 @@
 var express = require('express');
 var router = express.Router();
-const { check, validationResult } = require('express-validator');
-const Nekosan = require('../models/nekosan');
-const db = require('../models/index');
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+var mysql = require('mysql');
 
-//var mysql_setting = {
-//  host: 'localhost',
-//  user: 'root',
-//  password: '',
-//  database: 'neko'
-//};
+var mysql_setting = {
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'neko'
+};
 
+/* GET home page. */
 //router.get('/', (req, res, next) => {
 //  res.render('other', { title: 'あざ' ,
 //    content: '内容でてます～？でてますね＝＝＝'});
 //  });
 
-//このページに来た時
 router.get('/', (req, res, next) => {
-console.log("きてます");
-  db.Nekosan.findAll().then(Nekosan => {
-    var data = {
-      title: "aza-",
-      content: Nekosan
-    }
-    res.render('other', data);
-  });
+
+  //コネクションの用意
+  var connection = mysql.createConnection(mysql_setting);
+
+  //データベースに接続
+  connection.connect();
+
+  //データを取り出す
+  connection.query('SELECT * from nekos',
+    function (error, results, fields) {
+      //データベースアクセス完了時の処理
+      if (error == null) {
+        var data = {
+          title: 'Index',
+          content: results
+        };
+        res.render('other', data);
+      }
+    });
+  //接続を解除
+  connection.end();
 });
 
-//デリート処理
-router.post('/delete', (req, res, next) => {
- console.log("とても眠いぽすと");
-  db.Nekosan.findByPk(req.body.id)
-  .then(Nekosan => {
-    Nekosan.destroy().then(() => res.redirect('/other'));
-  })
-  console.log("消えてます？");
-});
+/////////////////////////////////////
 
-//  var id = req.params.id;
- // console.log(req.params.id);
+
+router.post('/:id/delete', (req, res, next) => {
+
+  console.log("きてくれたのか～");
+
+  var id = req.params.id;
+  //コネクションの用意
+  var connection = mysql.createConnection(mysql_setting);
+
+  //データベースに接続
+  connection.connect();
+
+
+  console.log(req.params.id);
   //データを削除する
- // connection.query('DELETE FROM nekos WHERE id = ?', id, function (error, results, fields) {
- //   if (error == null) {
- //     console.log("おっぺけぺ：", error);
- //   }
- //   res.redirect('/other');
-//  });
-//});
+  connection.query('DELETE FROM nekos WHERE id = ?', id, function (error, results, fields) {
+    if (error == null) {
+      console.log("おっぺけぺ：", error);
+    }
+    res.redirect('/other');
+  
+  });
+
+  //接続を解除
+  connection.end();
+});
 
 	//try{
 	//	const seller_category = await Category.update( { deleteFlg: flgOn }, { where: { id: req.params.id } });
@@ -63,6 +80,7 @@ router.post('/delete', (req, res, next) => {
 	//	}
 	//}catch(err){
 	//	console.log( err ,"エラー発生です");
+  //router.post('/:id/update', (req, res, next) => {
 
   //  console.log("きてくれたのか～2");
   //  var id = req.body.id;
@@ -76,8 +94,11 @@ router.post('/delete', (req, res, next) => {
   //
     //コネクションの用意
   //  var connection = mysql.createConnection(mysql_setting);
+
     //データベースに接続
  //   connection.connect();
+
+
   //  console.log(req.body.id);
     //データを更新する
   //  connection.query('UPDATE nekos set ? WHERE id = ?', [data, id], function (error, results, fields) {
@@ -85,9 +106,16 @@ router.post('/delete', (req, res, next) => {
  //       console.log("おっぺけぺ：", error);
  //     }
  //     res.redirect('/other');
+
  //   });
+
     //接続を解除
    /// connection.end();
 //  });
+
+
+
+
+
 
 module.exports = router;

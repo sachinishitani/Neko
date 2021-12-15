@@ -1,45 +1,52 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
 const { check, validationResult } = require('express-validator');
-const Nekosan = require('../models/nekosan');
-const db = require('../models/index');
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  console.log("こっち");
-  db.Nekosan.findAll().then(Nekosan => {
-    console.log('（Ｕ＾ω＾）わんわんお！');
-  });
-  res.render('login',{title:'ろぐいん'}
-  )
+var mysql_setting = {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'neko'
+};
+
+//ページ取得
+router.get('/',(req, res) => {
+    var data = {
+        title: 'kokoko',
+        content: 'nakami'
+    };
+    res.render('login', data);
 });
 
-//新規作成ページへのアクセス
-router.get('/post', (req, res, next) => {
-    var data = {
-      title: 'login',
-      content: '新しいレコードを入力',
-      form: req.body
+//データベースの設定情報
+var connection = mysql.createConnection(mysql_setting);
+//データベースに接続
+connection.connect();
+
+router.post('/post', (req, res) => {
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    console.log("きてます～～？");
+
+    connection.query(
+        'insert into users (username, email, password) VALUES (?, ?, ?)',
+        [username, email, password],
+        (error, results) => {
+        req.session.userId = results.insertId;
+        req.session.username = username;
+        res.redirect('/other');
     }
-
-    res.render('login', data);
-  });
-
-  //新規作成フォーム送信の処理
-  router.post('/post', (req, res, next) => {
-    console.log('にゃんぱすー');
-    db.sequelize.sync()
-    .then(() => db.Nekosan.create({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password
-    }))
-    .then(Nekosan => {
-      res.redirect('/login')
-    });
-  });
+    );
 
 
-  module.exports = router;
+    //接続を解除
+    connection.end();
+
+});
+
+
+
+module.exports = router;
