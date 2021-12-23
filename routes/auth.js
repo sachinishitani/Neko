@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models').User;
+//const passport = require('./auth');
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
@@ -47,3 +48,4 @@ passport.deserializeUser((user, done) => {
 });
 
 module.exports = passport;
+

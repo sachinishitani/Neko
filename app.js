@@ -1,14 +1,14 @@
 'use strict'
 
 var createError = require('http-errors');
-var express = require('express');
+const express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-
 const app = express();
-//const passport = require('./auth');
+const passport = require('passport');
+///////////////////////////////////
+
 var session = require('express-session');
 const flash = require('connect-flash');
 
@@ -16,6 +16,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var hello = require('./routes/hello');
 var other = require('./routes/other');
+//var auth = require('./routes/auth');
+//var loginTrue = require('./routes/login-true');
 var add = require('./routes/add');
 var edit = require('./routes/edit');
 var deleted = require('./routes/deleted');
@@ -23,6 +25,7 @@ var index = require('./routes/index');
 var otherManagement = require('./routes/other-management');
 var mysql = require('mysql');
 var login = require('./routes/login');
+var signup = require('./routes/signup');
 /////////////////////////////////////////////
 const authMiddleware = (req, res, next) => {
   if(req.isAuthenticated()) { // ログインしてるかチェック
@@ -88,9 +91,6 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-//app.use(passport.initialize());
-//app.use(passport.session());
-//////////ここまで///
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -111,7 +111,28 @@ app.use('/add', add);
 app.use('/edit', edit);
 app.use('/deleted', deleted);
 app.use('/login', login);
-
+app.use('/signup', signup);
+//app.use('/auth', auth);
+//app.use('/login-true', loginTrue);
+app.use(passport.initialize());
+var LocalStrategy = require('passport-local').Strategy;
+app.use(passport.session());
+///////20211217/////
+passport.use(new LocalStrategy({
+  usernameField: 'username',
+  passwordField: 'password',
+  passReqToCallback: true,
+  session: false,
+}, function (req, username, password, done) {
+  process.nextTick(function () {
+    if (username === "test" && password === "test") {
+      return done(null, username)
+    } else {
+      console.log("login error")
+      return done(null, false, { message: 'パスワードが正しくありません。' })
+    }
+  })
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -142,12 +163,13 @@ const httpsOptions = {
   cert: fs.readFileSync('./security/cert.pem')
 };
 
-
 const server = https.createServer(httpsOptions, app)
   .listen(port, () => {
   console.log('server running at ' + port);
 });
 // localhostでhttps接続の設定 ここまで
+
+///////////////////////////////////////
 
 
 module.exports = app;
