@@ -62,8 +62,6 @@ connection.query(
        //res.render('hello2.ejs');
   }
 );
-
-
 ////////////////////////////////////
 
 //app.use(session({
@@ -76,21 +74,37 @@ connection.query(
 //  maxage: 1000 * 60 * 30
 //  }
 //}); 
-
+//
 /////////////////////////////////////////////////////////////////////
-var session_opt = {
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 60 * 60 * 1000 }
-};
-app.use(session(session_opt));
+//var session_opt = {
+ // secret: 'keyboard cat',
+  //resave: false,
+  //saveUninitialized: false,
+  //cookie: { maxAge: 60 * 60 * 1000 }
+//};
+//app.use(session(session_opt));
 //////20211203/////ここから///
+//app.use(session({
+ // secret: 'YOUR-SECRET-STRING',
+//  resave: true,
+//  saveUninitialized: true
+//}));
+
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 追加
 app.use(session({
-  secret: 'YOUR-SECRET-STRING',
-  resave: true,
-  saveUninitialized: true
+secret: "secret word",
+resave: false,
+saveUninitialized: false,
+cookie: {
+  maxAge: 60 * 1000
+}
 }));
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -106,13 +120,13 @@ app.use('/users', usersRouter);
 app.use('/hello', hello);
 app.use('/other', other);
 app.use('/index', index);
+
 app.use('/other-management',otherManagement);
 app.use('/add', add);
 app.use('/edit', edit);
 app.use('/deleted', deleted);
 app.use('/login', login);
 app.use('/signup', signup);
-//app.use('/auth', auth);
 //app.use('/login-true', loginTrue);
 app.use(passport.initialize());
 var LocalStrategy = require('passport-local').Strategy;
@@ -154,8 +168,6 @@ app.use(function(err, req, res, next) {
 const https = require('https');
 const fs = require('fs');
 const ejs = require('ejs');
-const router = require('./routes/index');
-// const url = require('url');
 
 const port = 3000;
 const httpsOptions = {

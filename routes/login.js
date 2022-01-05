@@ -6,12 +6,22 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const passport = require('passport');
 const User = require('../models/user');
-const Signup = require('../models/signup');
+
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
+  const nm = req.body.username;
+  const ml = req.body.mail;
+
  console.log("こっち");
-  db.User.findAll().then(User => {
+  db.User.findAll({
+    where: {
+      [Op.or]:[
+        {name:{[Op.like]:'%'+nm+'%'}},
+        {mail:{[Op.like]:'%'+ml+'%'}}
+      ]
+    }
+  }).then(User => {
     console.log(User);
   });
   res.render('login',{title:'ろぐいん'}
