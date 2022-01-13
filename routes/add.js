@@ -6,17 +6,31 @@ const db = require('../models/index');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-/* GET home page. */
+//このページにきたとき
 router.get('/', (req, res, next) => {
-  console.log("こっち");
+  console.log("あｄｄこっち");
+  //ログインしていない＝req.session.loginは存在しない
+  if(!req.session.login) {
+    db.Nekosan.findAll().then(Nekosan => {
+      var data = {
+        title: "add", //タイトル
+        username:"未ログイン", // ヘッダーで表示させる名前
+        content: Nekosan //登録されている全猫ちゃん
+    }
+    res.render('add', data);
+  })
+  //ログイン済（req.session.loginが存在する）場合はユーザーネームを表示する
+} else {
   db.Nekosan.findAll().then(Nekosan => {
-    console.log('シークエライズ');
-    console.log(Nekosan);
-  });
-  res.render('add',{title:'新規登録'}
-  )
+    var data = {
+      title: "add",
+      username:req.session.login.username,
+      content: Nekosan
+    }
+    res.render('add', data );
+  })
+}
 });
-
 //router.get('/post', (req, res, next) => {
 //  console.log("来てないですよね");
 //    var data = {

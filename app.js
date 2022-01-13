@@ -20,7 +20,6 @@ var other = require('./routes/other');
 //var loginTrue = require('./routes/login-true');
 var add = require('./routes/add');
 var edit = require('./routes/edit');
-var deleted = require('./routes/deleted');
 var index = require('./routes/index');
 var otherManagement = require('./routes/other-management');
 var mysql = require('mysql');
@@ -99,11 +98,9 @@ secret: "secret word",
 resave: false,
 saveUninitialized: false,
 cookie: {
-  maxAge: 60 * 1000
+  maxage: 1000 * 60 * 60 * 24  // 24時間
 }
 }));
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -124,7 +121,6 @@ app.use('/index', index);
 app.use('/other-management',otherManagement);
 app.use('/add', add);
 app.use('/edit', edit);
-app.use('/deleted', deleted);
 app.use('/login', login);
 app.use('/signup', signup);
 //app.use('/login-true', loginTrue);

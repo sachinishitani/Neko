@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const User = require('../models/user');
 
-/* GET home page. */
+//このページに来た時
 router.get('/', (req, res, next) => {
  console.log("こっち");
   db.User.findAll().then(User => {
@@ -42,14 +42,14 @@ router.get('/', (req, res, next) => {
 });
 /////////////////////////////////////////////
 //ログインする
-router.get('/login', (req, res, next) => {
-  console.log('ろぐいん');
-  var data = {
-    title:'Users/Login',
-    content:'名前とパスワードをいれてね'
-  }
-  res.render('signup/login', data);
-});
+//router.get('/login', (req, res, next) => {
+//  console.log('ろぐいん');
+//  var data = {
+//    title:'Users/Login',
+//    content:'名前とパスワードをいれてね'
+//  }
+//  res.render('signup/login', data);
+//});
 
 router.post('/login', (req, res, next) => {
   console.log('ろぐいん2');

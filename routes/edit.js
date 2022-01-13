@@ -6,17 +6,31 @@ const Nekosan = require('../models/nekosan');
 const db = require('../models/index');
 const Sequelize = require('sequelize');
 
-/* GET home page. */
+//このページにきたとき
 router.get('/', (req, res, next) => {
+  //ログインしていない＝req.session.loginは存在しない
+  if (!req.session.login) {
+    db.Nekosan.findByPk(req.query.id)
+    .then(nekosan => {
+      var data = {
+        title: "ねこさん",//タイトル
+        username:"未ログイン",//ヘッダーで表示させる名前
+        form: nekosan
+      }
+      res.render('edit', data);
+    })
+    //ログイン済（req.session.loginが存在する）場合はユーザーネームを表示させる
+  } else {
     db.Nekosan.findByPk(req.query.id)
     .then(nekosan => {
       var data = {
         title: "ねこさん",
+        username:req.session.login.username,
         form: nekosan
       }
       res.render('edit', data);
-    });
-console.log(">>>" + req.query.id);
+  })
+ }
 });
 
   //コネクションの用意

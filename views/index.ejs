@@ -2,20 +2,45 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Corben:700" rel="stylesheet">
         <link rel="stylesheet" href="/stylesheets/index.css">
         <title></title>
     </head>
     <body class="container">
         <%- include('header'); %>
         <div class="main2">
-            <p>かなかな</p>
-            <p><h2>はじまりのページ</h2></p>
-            <div>
-                <img src="/images/neko.png" alt="現場猫">
-            </div>
-            <div>
-             <h3><a href="../signup" class="hover9">!!('ω')新規登録しよう('ω')!!</a></h3>
+            <p><h2>あなたと猫ちゃんの物語のはじまり</h2></p>
+            <div class="cat">
+                <p>あなたの近くにいる地域猫さん</p>
+                <p>あなたと一緒に住んでいる猫ちゃん</p>
+                <p>たまたま道で偶然出会った猫ちゃん</p>
+                <p>とにかく猫ちゃんを愛でる場所ですよここはね、はい</p>
+                <p>ねこかわいいなーー</p>
+                <p>('ω')  ('ω')</p>
             </div>
         </div>
+        <div class="db">NEW CAT's!</div>
+        <div class="loopSlide">
+            <ul>
+              <li><img src="/images/cat5.jpg" alt="">もも</li>
+              <li><img src="/images/cat7.jpg" alt="">ころく</li>
+              <li><img src="/images/nekosan1.jpg" alt="">うめ</li>
+              <li><img src="/images/nikukyuu.jpg" alt="">ここ</li>
+            </ul>
+            <ul>
+                <li><img src="/images/cat5.jpg" alt="">もも</li>
+                <li><img src="/images/cat7.jpg" alt="">ころく</li>
+                <li><img src="/images/nekosan1.jpg" alt="">うめ</li>
+                <li><img src="/images/nikukyuu.jpg" alt="">ここ</li>
+            </ul>
+          </div>
+        <div class="cat2">
+            <a href="../signup" class="button">新規登録ボタン</a>
+        </div>
+        <br>
+        <%- include('footer'); %>
     </body>
 </html>
