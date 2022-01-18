@@ -1,11 +1,19 @@
 <header>
   <link rel="stylesheet" href="/stylesheets/header.css">
+  <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Corben:700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC" rel="stylesheet">
     <div class="header-nav">
-      <h1><a href="/">NEKO INDEX</a></h1>
-      <p>ようこそ、<%= locals.username %>さん</p>
+      <div class="iina">
+        <a href="/">NEKO INDEX</a>
+      </div>
+      <p>ようこそ <%= username %> さん</p>
       <div class="button03">
-        <a href="../other">猫さん一覧</a>
-        <a href="../login">ログインする</a>
+        <a href="../other"><button class="Button-style">CAT's</button></a>
+        <a href="../login"><button class="Button-style">LOGIN</button></a>
+        <a href="../logout"><button class="Button-style">LOGOUT</button></a>
       </div>
       <p>にゃんこ大先生('ω')</p>
     </div>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>sign up</title>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <%- include('header'); %>
+      <div class="container-login">
+        <div class="panel">
+          <h1>新規登録するほう</h1>
+          <form action="/signup/post" method="post">
+            <div class="form-group">
+              <input type="text" name="username" id="username" value="" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <input type="text" name="email" id="email" value="" class="form-control" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" id="password" value="" class="form-control" placeholder="Password">
+            </div>
+            <div>
+              <input type="submit" value="新規登録する">
+            </div>
+          </form>
+            <!--<h2>ログインするほう</h2>
+            <form action="/signup/login" method="post">
+              <div class="form-group">
+                <label for="username" class="col-md-4 col-form-label text-md-right">なまえ</label>
+                <input type="text" name="username" id="username" value="" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>
+                <input type="text" name="email" id="email" value="" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="password" class="col-md-4 col-form-label text-md-right">パスワード</label>
+                <input type="password" name="password" id="password" value="" class="form-control">
+              </div>
+              <div>
+                <input type="submit" value="保存">
+              </div>
+              <a href="../index" class="btn btn-malformation btn-malformation--pastel">おうち</a>
+              </div>
+            </form>-->
+        </div>
+      </div>
+    </div>
+    <%- include('footer'); %>
+  </body>
+</html>

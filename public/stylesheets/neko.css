@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Swash&display=swap');
+
+.container {
+  background-image: url('/images/1.jpg');
+  height: 100%;
+}
+.main2 {
+    font-size: 18px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    color: #550000;
+}
+.cat a{
+    display: block;
+    font-family: "Hannari";
+    font-size: 16px;
+    margin-left: 20px;
+    padding: 2px;
+}
+
+
+
