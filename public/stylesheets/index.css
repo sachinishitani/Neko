@@ -118,6 +118,20 @@ img {
 /*ul:hover {
     animation-play-state: paused;
 }*/
+.neko1{
+	font-weight: bold;
+	font-size: 18px;
+}
+.cat a {
+	text-decoration: none;
+	color:#AA0000;
+	font-size: 20px;
+	font-weight: bold;
+}
+.cat a:hover {
+	text-decoration: underline;
+	color: #FF9900;
+}
 
 @keyframes slide1 {
     0% { transform: translateX(100%); }

@@ -21,10 +21,11 @@ var other = require('./routes/other');
 var add = require('./routes/add');
 var edit = require('./routes/edit');
 var index = require('./routes/index');
-var otherManagement = require('./routes/other-management');
 var mysql = require('mysql');
 var login = require('./routes/login');
 var signup = require('./routes/signup');
+var header = require('./routes/header');
+var neko = require('./routes/neko');
 /////////////////////////////////////////////
 const authMiddleware = (req, res, next) => {
   if(req.isAuthenticated()) { // ログインしてるかチェック
@@ -118,11 +119,21 @@ app.use('/hello', hello);
 app.use('/other', other);
 app.use('/index', index);
 
-app.use('/other-management',otherManagement);
 app.use('/add', add);
 app.use('/edit', edit);
 app.use('/login', login);
 app.use('/signup', signup);
+app.use('/header', header);
+app.use('/neko', neko);
+
+
+app.get('/logout',(req, res, next) => {
+  console.log("ログアウト");
+  req.session.destroy((error) => {
+  res.redirect('/index');
+  });
+});
+
 //app.use('/login-true', loginTrue);
 app.use(passport.initialize());
 var LocalStrategy = require('passport-local').Strategy;

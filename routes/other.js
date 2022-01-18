@@ -29,7 +29,7 @@ router.get('/', (req, res, next) => {
         username:"未ログイン", // ヘッダーで表示させる名前
         content: Nekosan //登録されている全猫ちゃん
       }
-      res.render('other', data );
+      res.redirect('index');
     })
   // ログイン済（req.session.loginが存在する）の場合はユーザーネームを表示させる
   } else  {

@@ -50,33 +50,35 @@ router.get('/', (req, res, next) => {
 //  }
 //  res.render('signup/login', data);
 //});
+//////////////////////////////////////////////
 
-router.post('/login', (req, res, next) => {
-  console.log('ろぐいん2');
-db.User.findOne({
-  where:{
-    username:req.body.username,
-    email: req.body.email,
-    password:req.body.password
-  }
-}).then(user=>{
-  if(user != null) {
-    req.session.login = user;
-    console.log(req.session.login);
-    let back = req.session.back;
-    if(back == null){
-      back = '/other';
-    }
-    res.redirect(back);
-  } else {
-    var data = {
-      title:'ログイン',
-      content:'名前かパスワードに問題がありますよ～～'
-    }
-    res.render('hello', data);
-  }
-});
-});
+//router.post('/login', (req, res, next) => {
+//  console.log('ろぐいん2');
+//db.User.findOne({
+//  where:{
+//    username:req.body.username,
+//    email: req.body.email,
+//    password:req.body.password
+//  }/
+
+//}).then(user=>{
+//  if(user != null) {
+//    req.session.login = user;
+//    console.log(req.session.login);
+//    let back = req.session.back;
+//    if(back == null){
+//     back = '/other';
+//    }
+//    res.redirect(back);
+//  } else {
+//    var data = {
+//      title:'ログイン',
+//      content:'名前かパスワードに問題がありますよ～～'
+//    }
+//    res.render('hello', data);
+//  }
+//});
+//});
 
 
 module.exports = router;
