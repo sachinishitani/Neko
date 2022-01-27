@@ -11,9 +11,8 @@ const passport = require('passport');
 
 var session = require('express-session');
 const flash = require('connect-flash');
-
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users/users');
 var hello = require('./routes/hello');
 var other = require('./routes/other');
 //var auth = require('./routes/auth');
@@ -26,19 +25,16 @@ var login = require('./routes/login');
 var signup = require('./routes/signup');
 var header = require('./routes/header');
 var neko = require('./routes/neko');
+//var board = require('./routes/board');
+var boards = require('./routes/boards/boards')
 /////////////////////////////////////////////
 const authMiddleware = (req, res, next) => {
   if(req.isAuthenticated()) { // ログインしてるかチェック
-
     next();
-
   } else {
-
     res.redirect(302, '/login');
-
   }
 };
-
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -114,7 +110,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users/users', usersRouter);
 app.use('/hello', hello);
 app.use('/other', other);
 app.use('/index', index);
@@ -125,7 +121,8 @@ app.use('/login', login);
 app.use('/signup', signup);
 app.use('/header', header);
 app.use('/neko', neko);
-
+//app.use('/board', board);
+app.use('/boards/boards',boards);
 
 app.get('/logout',(req, res, next) => {
   console.log("ログアウト");

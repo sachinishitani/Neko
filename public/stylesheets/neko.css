@@ -14,8 +14,22 @@
     font-family: "Hannari";
     font-size: 16px;
     margin-left: 20px;
+    margin-top: 3px;
     padding: 2px;
 }
-
+.boke {
+  background-image:url('/images/b.jpg');
+  height: 58px;
+  padding-top: 10px;
+  padding-left: 10px;
+  margin-top: 10px;
+}
+.boke1 {
+  color: white;
+  margin-top: 8px;
+  margin-left: 10px;
+  font-family: 'IM Fell DW Pica SC', serif;
+  font-size: 28px;
+}
 
 
