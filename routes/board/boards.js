@@ -10,7 +10,7 @@ var router = express.Router();
 //console.log("ねこさん！！！！");
 
 router.get('/', function(req, res, next) {
-  console.log("きてるん？？",req.session.login);
+  console.log("ボールぺん",req.session.login);
   let username;
   if (!req.session.login){
     username = '未ログイン';
@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
     username = req.session.login.username;
   };
 
-  res.render('boards/boards',{username:username});
+  res.render('board/boards',{username:username});
   });
 
 module.exports = router;
