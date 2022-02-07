@@ -1,46 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/add.css">
+    <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/add.css' />
   </head>
-  <body>
+  <body class="container">
     <%- include('header'); %>
-  <div class="nyannko">
-    <h2>登録するよ</h2>
-    <p><%- content %></p>
-    <form action="/add/post" method="post">
-      <div class="form-group">
-        <label for="name">名前です</label>
-        <input type="text" name="name" id="name" value="<% form.name %>" class="form-control">
+    <div class="main">
+      <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
+      <link href="https://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+      <div id="content">
+        <h2>新しい猫さんの登録をしましょう</h2>
+          <form action="/add/post" method="post"  id="form" class="topBefore">
+              <p>
+                  <label for="name">猫さんの名前</label>
+                  <input type="text" name="name" id="name">
+              </p>
+              <p>
+                <label for="userid">ユーザー</label>
+                <input type="text" name="userid" id="userid">
+            </p>
+
+              <p>
+                  <label for="age">猫さんの年齢</label>
+                  <input type="age" name="age" id="age">
+              </p>
+
+              <p>
+                  <label for="food">ごはん</label>
+                  <input type="text" name="food" id="food" placeholder="">
+              </p>
+
+              <p>
+                  <label for="personality">性格</label>
+                  <input type="text" name="personality" id="personality">
+              </p>
+
+              <p>
+                  <label for="favoriteToys"></label>おもちゃ</label>
+                  <input type="text" name="favoriteToys" id="favoriteToys">
+              </p>
+
+              <p>
+                <label for="favoriteSnack">おやつ</label>
+                <input type="text" name="favoriteSnack" id="favoriteSnack" value="">
+              </p>
+
+              <p>
+                <label for="submit"></label>
+                <input id="submit" type="submit" value=" 送信 ">
+              </p>
+
+          </form>
       </div>
-      <div class="form-group">
-        <label for="age">年齢</label>
-        <input type="number" name="age" id="age" value="<% form.age %>" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="food">ごはん</label>
-        <input type="text" name="food" id="food" value="" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="name">性格</label>
-        <input type="text" name="personality" id="personality" value="" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="name">あそび</label>
-        <input type="text" name="favoriteToys" id="favoriteToys" value="" class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="name">おやつ</label>
-        <input type="text" name="favoriteSnack" id="favoriteSnack" value="" class="form-control">
-      </div>
-      <div>
-        <input type="submit" value="送信">
-      </div>
-    </form>
-  </div>
-  <div>
-    <a href="../index" class="btn btn-malformation btn-malformation--pastel">おうち</a>
-</div>
-</body>
+    </div>
+    <%- include('footer'); %>
+  </body>
 </html>

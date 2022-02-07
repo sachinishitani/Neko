@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Swash&display=swap');
 .cats {
     margin: 60px;
     margin-left: 250px;
@@ -6,50 +6,47 @@
 h1 {
     color: #555555;
 }
-/*managementテーブルCSS*/
-.management_table {
-    margin: 35px auto;
-    padding: 0;
-    width: 1000px;
-    height:200px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 0 15px -6px #00000073;
-  }
-  .management_table tr {
-    background-color: #fff;
-  }
-  .management_table th,
-  .management_table td {
-    padding: 13px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 15px;
-  }
-  .management_table th {
-    width: 15%;
-    padding: 10px 0;
-    font-size: 15px;
-    background-color: #C299FF;
-  }
-  .management_table tr{
-    text-align: center;
-    width: 15%;
-    padding: 13px 0;
-    background-color: #fff;
-    color:#3a3a3a;
-    font-size: 15px;
-  }
-  .management_table tr:hover{
-    background-color: #EEEEEE;
-  }
-  .management_container{
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    gap: 50px;
-    height: 250px;
-    margin: 80px;
-  }
+.container {
+  background-image: url('/images/1.jpg');
+  height: 100%;
+}
+.management_table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 85%;
+  font-family: "Hannari";
+  font-size:1.5em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 13px;
+}
+.management_table tr{
+  border-bottom: solid 1px #eee;
+  cursor: pointer;
+  font-family: "Hannari";
+}
+.management_table tr:hover{
+  background-color: #FFFFEE;
+}
+.management_table td {
+  text-align: center;
+  width: 13%;
+  padding: 8px 0;
+}
+.management_table td p {
+  color: white;
+  font-size: 18px;
+  padding: 1px;
+}
+.management_table th{
+  text-align: center;
+  width: 13%;
+  padding: 8px 0;
+  font-family: "Hannari";
+}
+.boke {
+  background-image:url('/images/b.jpg');
+}
   /*detailテーブル*/
   .management_table2 {
     margin: 35px auto;
@@ -98,9 +95,7 @@ button.btn {
 
 a.btn-malformation {
   font-size: 2rem;
-
   padding: 3rem 4rem;
-
   color: #fff;
   border-radius: 100% 80px / 80px 100%;
   background-color: #eb6100;
@@ -113,9 +108,7 @@ a.btn-malformation:hover {
 
 a.btn-malformation {
   font-size: 2rem;
-
   padding: 3rem 4rem;
-
   color: #fff;
   border-radius: 100% 80px / 80px 100%;
 }
@@ -132,21 +125,74 @@ a.btn-malformation:hover {
   background: linear-gradient(135deg, #fca1a1 40%, #fcfc5d 100%);
   -webkit-box-shadow: 30px 10px 0 #fefeb3;
   box-shadow: 30px 10px 0 #fefeb3;
-
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fca1a1', endColorstr='#fcfc5d', GradientType=1);
 }
 .neko{
   margin-left: 50px;
+  font-family: "Hannari";
 }
+  .btn-a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 1em 2em;
+    width: 250px;
+    color: #2285b1;
+    font-size: 18px;
+    font-weight: 700;
+    border: 1px solid #a0c4d3;
+    border-radius: 3px;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .btn-a::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 1px solid #2285b1;
+    border-right: 1px solid #2285b1;
+    transform: rotate(45deg);
+  }
 
-.btn-malformation--pastel2 {
-  background: #fc3535;
-  background: -webkit-linear-gradient(-45deg, #fa7979 40%, #e9e97a 100%);
-  background: -webkit-linear-gradient(315deg, #e40707 40%, #b7fc5d 100%);
-  background: linear-gradient(135deg, #34a1a8 40%, #b3ebd8 100%);
-  -webkit-box-shadow: 30px 10px 0 #fefeb3;
-  box-shadow: 30px 10px 0 #fefeb3;
+  .btn-a:hover {
+    color: #442929;
+    text-decoration: none;
+    background-color: rgb(252, 255, 236);
+  }
 
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fca1a1', endColorstr='#fcfc5d', GradientType=1);
-}
-
+  .btn-a:hover::after {
+    border-top: 1px solid #333333;
+    border-right: 1px solid #333333;
+  }
+  .edit-solid.icon {
+    color: rgb(61, 44, 44);
+    position: absolute;
+    margin-left: 4px;
+    margin-top: 7px;
+    width: 14px;
+    height: 4px;
+    border-radius: 1px;
+    border: solid 1px currentColor;
+    background-color: currentColor;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  
+  .edit-solid.icon:before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: -1px;
+    width: 0px;
+    height: 0px;
+    border-left: solid 5px transparent;
+    border-right: solid 5px currentColor;
+    border-top: solid 2px transparent;
+    border-bottom: solid 2px transparent;
+  }
+  
+  .btn2 {
+    color: brown;
+  }

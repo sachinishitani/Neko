@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Swash&display=swap');
+
 header {
-    background-color: #88E7CE;
+  background-image: url('/images/pnk3.jpg');
+  font-family: "Hannari";
   }
 
   header > p {
@@ -11,7 +14,7 @@ header {
     font-weight: bold;
     padding: 40px 0 80px;
   }
-  
+
   header > p:after {
     position: absolute;
     content: "";
@@ -22,9 +25,7 @@ header {
     right: -10px;
     background-size: 148px 136px;
     background-repeat: no-repeat;
-    background-image: url('/images/wanko.svg');
   }
-  
   .header-nav {
     display: flex;
     flex-wrap: nowrap;
@@ -36,64 +37,55 @@ header {
     margin: 0 auto;
     height: 80px;
   }
-  
-  .header-nav > a {
-    color: #2B546A;
+  .iina {
+    color: #8B0000;
+    font-family: 'Amatic SC', cursive;
+    font-family: 'Caveat', cursive;
+    font-size: 43px;
     font-weight: bold;
   }
-  
   .header-nav p {
     padding-left: 30px;
     font-size: 15px;
-    color: #2B546A;
+    color:#FF82B2;
     font-weight: bold;
     word-wrap: break-word;
     opacity: 0.7;
     flex: 1;
   }
-  
-  .header-nav ul {
-    text-align: right;
-    display: flex;
-  }
-  
-  .header-nav li > a {
-    white-space: nowrap;
-    display: inline-block;
-    font-size: 15px;
-    color: #2B546A;
-    font-weight: bold;
-    padding-left: 30px;
-  }
-  
   .heading {
     font-size: 30px;
   }
-  
-  .list li, .list-admin li {
-    position: relative;
-    padding: 28px 40px 54px;
-    border: 1px solid #d5dee8;
-    border-radius: 6px;
+  .header-nav a {
+    color: brown;
   }
-  
-  .list li:not(:first-child),
-  .list-admin li:not(:first-child) {
-    margin-top: 20px;
-  }
-  
-  .list h2,
-  .list-admin h2 {
-    font-size: 22px;
-  }
-  
-  .list p,
-  .list-admin p {
-    font-size: 16px;
-    color: #8491A5;
-  }
-
 .button03{
-  font-size: 15px;
+  font-size: 13px;
+  font-family: 'IM Fell DW Pica SC', serif;
+}
+.Button-style {
+  font-size: 17px;
   font-weight: bold;
+  display: inline-block;
+  padding: 0.5em 1em 0.3em;
+  color: #AA0000;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffcccc;
+  background-size: 10px 10px;
+  background-image: radial-gradient(#f8a7b1 15%, transparent 20%),
+  radial-gradient(#f8a7b1 15%, transparent 20%);
+  background-position: 0 0, 15px 15px;
+  font-family: 'IM Fell DW Pica SC', serif;
+}
+
+.Button-style:hover {
+  color: #AA0000;
+  background-color: #ffe6e6;
+  background-image: radial-gradient(#f8a7b1 15%, transparent 20%),
+  radial-gradient(#f8a7b1 15%, transparent 20%);
+  background-position: 0 0, 15px 15px;
+}
+.username {
+  color: #8B0000;
 }

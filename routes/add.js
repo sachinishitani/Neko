@@ -1,107 +1,63 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
 const { check, validationResult } = require('express-validator');
+const Nekosan = require('../models/nekosans');
+const db = require('../models/index');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
-var mysql_setting = {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'neko'
-};
-
-//コネクションの用意
-var connection = mysql.createConnection(mysql_setting);
-
-//データベースに接続
-connection.connect();
-
-/* GET home page. */
+//このページにきたとき
 router.get('/', (req, res, next) => {
-  res.render('add', { title: '猫さん登録画面作ってみましたよ' ,
-    content: '内容でてます～？でてます””',
-    form: req.body});
-  });
-
-router.get('/', function (req, res, next) {
-
-
-//データを取り出す
-connection.query('SELECT * from nekos',
-  function (error, results, fields) {
-    //データベースアクセス完了時の処理
-    if (error == null) {
+  console.log("あｄｄこっち");
+  //ログインしていない＝req.session.loginは存在しない
+  if(!req.session.login) {
+    db.Nekosan.findAll().then(Nekosan => {
       var data = {
-        title: 'add',
-        content: results
-      };
-      res.render('add', data)
-    }
-  });
-//接続を解除
-connection.end();
-});
-
-
-//新規作成ページへのアクセス
-router.get('/post', (req, res, next) => {
-    var data = {
-      title: 'Add',
-      content: '新しいレコードを入力',
-      form: {name:'', age:0}
+        title: "add", //タイトル
+        username:"未ログイン", // ヘッダーで表示させる名前
+        content: Nekosan //登録されている全猫ちゃん
     }
     res.render('add', data);
-  });
-
-  //新規作成フォーム送信の処理
-  router.post('/post', [
-    check('name','名前 は必ず入力してください。').notEmpty(),
-    check('age','AGE は年齢（整数）を入れてください。').isInt()
-  ], (req, res, next) => {
-
-    const errors = validationResult(req);
-
-    console.log("ねこねこ");
-    if (!errors.isEmpty()) {
-      console.log('if');
-      var result = '<ul class="text-danger">';
-      var result_arr = errors.array();
-      for(var n in result_arr) {
-        result += '<li>' + result_arr[n].msg + '</li>'
-      }
-      result += '<ul>';
-      var data = {
-        title: 'Add',
-        content: result,
-        form: req.body
-      }
-      res.render('add', data);
-    } else {
-      console.log('else');
-      var nm = req.body.name;
-      var ag = req.body.age;
-  
-    console.log('てすと');
+  })
+  //ログイン済（req.session.loginが存在する）場合はユーザーネームを表示する
+} else {
+  db.Nekosan.findAll().then(Nekosan => {
     var data = {
-      'name': nm,
-      'age': ag,
-      'food': req.body.food,
-      'personality': req.body.personality,
-      'favoriteToys': req.body.favoriteToys,
-      'favoriteSnack': req.body.favoriteSnack
-    };
+      title: "add",
+      username:req.session.login.username,
+      content: Nekosan
+    }
+    res.render('add', data );
+  })
+}
+});
+//router.get('/post', (req, res, next) => {
+//  console.log("来てないですよね");
+//    var data = {
+//      title: 'Add',
+//      content: '新しいレコードを入力',
+//      form: req.body
+//    }
+//    res.render('add', data);
+//  });
 
-    //データベースの設定情報
-    var connection = mysql.createConnection(mysql_setting);
-    //データベースに接続
-    connection.connect();
-
-    //データを登録する
-    connection.query('insert into nekos set ?', data, function (error, results, fields) {
-      res.redirect('/add');
+  //登録処理
+  router.post('/post', (req, res, next) => {
+    console.log("ねこねこ");
+    db.sequelize.sync()
+    .then(() => db.Nekosan.create({
+      name: req.body.name,
+      userId: req.body.userid,
+      age: req.body.age,
+      food: req.body.food,
+      personality: req.body.personality,
+      favoriteToys: req.body.favoriteToys,
+      favoriteSnack: req.body.favoriteSnack
+    }))
+    .then(Nekosan => {
+      res.redirect('/other')
     });
-    //接続を解除
-    connection.end();
-  }
   });
+
+
   module.exports = router;

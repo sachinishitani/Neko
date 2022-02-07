@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/stylesheets/other.css">
+        <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
         <title>あざー</title>
     </head>
     <body class="container">
@@ -11,18 +12,18 @@
             <div>
             </div>
             <div class="management_container">
-                <table border="1" bordercolor="#c2c2c2" class="management_table">
+                <table border="" bordercolor="#EEEEEE" class="management_table">
                     <tr>
-                        <td colspan="7" bgcolor="#FF97C2"><font size ="5">('ω')ねこさんたちについて('ω')</font></td>
+                        <td colspan="7" class="boke"><p><%= username %> さんのねこさんたちについて</p></td>
                     </tr>
                     <tr>
-                        <th bgcolor="#C299FF">ID</th>
-                        <th bgcolor="#C299FF">名前</th>
-                        <th bgcolor="#C299FF">年齢</th>
-                        <th bgcolor="#C299FF">ご飯</th>
-                        <th bgcolor="#C299FF">性格</th>
-                        <th>へんしゅう</th>
-                        <th>さくじょ</th>
+                        <th bgcolor="">ID</th>
+                        <th bgcolor="">名前</th>
+                        <th bgcolor="">年齢</th>
+                        <th bgcolor="">ご飯</th>
+                        <th bgcolor="">性格</th>
+                        <th bgcolor="">編集</th>
+                        <th bgcolor="">削除</th>
                     </tr>
                         <% for(var i in content){ %>
                         <tr>
@@ -33,11 +34,11 @@
                             <td><%= obj.food %></td>
                             <td><%= obj.personality %></td>
                             <td>
-                                <a href="../edit/<%= obj.id %>">編集</a>
+                                <a href="../edit?id=<%= obj.id %>">くわしく</a>
                             </td>
-                            <td><form action="../other/<%= obj.id %>/delete" method="POST">
+                            <td><form action="../other/delete" method="POST">
                                     <input type="hidden" name="id" value="<%= obj.id %>">
-                                    <input type="submit" value="削除">
+                                    <button type="submit" value="削除" class="btn2">✔</button>
                                 </form>
                             </td>
                         </tr>
@@ -46,8 +47,8 @@
             </div>
         </div>
         <div class="neko">
-            <a href="../add" class="btn btn-malformation btn-malformation--pastel2">とうろく</a>
-            <a href="../index" class="btn btn-malformation btn-malformation--pastel">おうち</a>
+            <a href="../add" class="btn-a">猫さんを登録する</a>
         </div>
+        <%- include('footer'); %>
     </body>
 </html>

@@ -1,3 +1,148 @@
 .main2 {
+    text-align:left;
+	font-family: "Hannari";
+}
+.main2 h2 {
+	color:#660000;
+	margin-left: 50px;
+	margin-top: 50px;
+	font-size: 26px;
+}
+.main2 p {
+	color: brown;
+}
+.cat {
+	margin: 50px;
+	font-family: "Hannari";
+}
+.cat p {
+	font-family: "Hannari";
+}
+.cat2 {
+	margin-left: 97px;
+    margin-top: 110px;
+	margin-bottom: 70px;
+}
+.cat3 {
+	font-family: "Hannari";
+	font-size: 16px;
+	color: brown;
+}
+.container {
+	background-image: url('/images/cat2m.jpg');
+	height: 100%;
+}
+.index-signup {
+    color: #DDA0DD;
+}
+.hover9 {
+	display: inline-block;
+	position: relative;
+	text-decoration: none;
+}
+.hover9::after {
+	position: absolute;
+	content: '';
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 1px;
+	background: #2196F3;
+	transition: all 0.3s ease 0s;
+}
+.hover9:hover {
+	cursor: pointer;
+}
+.hover9:hover::after {
+	width: 100%;
+}
+.button {
+	display: inline-block;
+	padding: .58em 3.5em;
+	background: linear-gradient(#f585aa , #f77ea6);
+	border: 1px solid #ffadc8;
+	border-radius: 5px;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	transition: .3s ease-in-out;
+	font-family: "Hannari";
+}
+.button:hover {
+	animation: bounce 2.5s ease-in-out;
+}
+@keyframes bounce {
+	5%  { transform: scale(1.1, .8); }
+	10% { transform: scale(.8, 1.1) translateY(-5px); }
+	15% { transform: scale(1, 1); }
+}
+.db {
+	font-family: 'Corben', cursive;
+	font-size: 23px;
+	color:#AA0000;
+	margin-left: 255px;
+}
+.loopSlide {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    width: 50vw;
+    overflow: hidden;
+	padding-top: 20px;
+	padding: 0.5em 1em;
+    margin: 2em 0;
+}
+ul {
+    padding: 0;
+	margin: 0;
+    width: 50vw;
+    display: flex;
+    flex-shrink: 0;
+}
+ul:first-child {
+    animation: slide1 60s -30s linear infinite;
+}
+
+ul:last-child {
+    animation: slide2 60s linear infinite;
+}
+li {
+    display: inline-block;
+    width: 50%;
+    min-width: 50px;
+    margin-right: 20px;
+    list-style: none;
     text-align: center;
+	font-family: "Hannari";
+}
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+/*ul:hover {
+    animation-play-state: paused;
+}*/
+.neko1{
+	font-weight: bold;
+	font-size: 18px;
+}
+.cat a {
+	text-decoration: none;
+	color:#AA0000;
+	font-size: 20px;
+	font-weight: bold;
+}
+.cat a:hover {
+	text-decoration: underline;
+	color: #FF9900;
+}
+
+@keyframes slide1 {
+    0% { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+@keyframes slide2 {
+    0% { transform: translateX(0); }
+    to { transform: translateX(-200%); }
 }
