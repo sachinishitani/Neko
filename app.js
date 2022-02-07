@@ -25,6 +25,7 @@ var signup = require('./routes/signup');
 var header = require('./routes/header');
 var neko = require('./routes/neko');
 var boards = require('./routes/board/boards');
+var error = require('./routes/error');
 /////////////////////////////////////////////
 const authMiddleware = (req, res, next) => {
   if(req.isAuthenticated()) { // ログインしてるかチェック
@@ -71,15 +72,15 @@ connection.query(
 //
 /////////////////////////////////////////////////////////////////////
 //var session_opt = {
- // secret: 'keyboard cat',
-  //resave: false,
-  //saveUninitialized: false,
-  //cookie: { maxAge: 60 * 60 * 1000 }
+// secret: 'keyboard cat',
+//resave: false,
+//saveUninitialized: false,
+//cookie: { maxAge: 60 * 60 * 1000 }
 //};
 //app.use(session(session_opt));
 //////20211203/////ここから///
 //app.use(session({
- // secret: 'YOUR-SECRET-STRING',
+// secret: 'YOUR-SECRET-STRING',
 //  resave: true,
 //  saveUninitialized: true
 //}));
@@ -121,6 +122,9 @@ app.use('/signup', signup);
 app.use('/header', header);
 app.use('/neko', neko);
 app.use('/board/boards', boards);
+//app.use('/error', error);
+
+
 
 app.get('/logout',(req, res, next) => {
   console.log("ログアウト");
