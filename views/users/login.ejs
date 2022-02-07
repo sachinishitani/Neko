@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta http-equiv="content-type"
+        content="text/html; charset=UTF-8">
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+        <body class="container">
+        <header>
+            <h1 class="display-4">
+                <%= title %></h1>
+        </header>
+        <div role="main">
+            <p><%= content %></p>
+            <form method="post" action="/users/login">
+                <div class="form-group">
+                    <label for="name">NAME</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="pass">PASWORD</label>
+                    <input type="password" name="pass" id="pass">
+                </div>
+                <input type="submit" value="ログイン">
+            </form>
+            <p><a href="/boards">Topへもどる</a></p>
+        </div>
+    </body>
+    </html>
+                

@@ -11,9 +11,11 @@ const User = require('../models/user');
 //このページに来た時
 router.get('/', (req, res, next) => {
   console.log("こっちはログイン画面のほう！");
-   db.User.findAll().then(User => {
-     console.log(User);
-   });
+   //db.User.findAll().then(User => {
+   //  console.log(User);
+   //});
+
+ 
    // 宣言
    let username;
    // ログイン済かログインしていないかで表示の名前を変更する
@@ -23,9 +25,8 @@ router.get('/', (req, res, next) => {
    } else {
      username = req.session.login.username;
    };
- 
-   res.render('login',{username:username}
-   )
+   res.render('login',{username:username})
+
  });
 
 //////////////////////////////////////////////

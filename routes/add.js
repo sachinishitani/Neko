@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { check, validationResult } = require('express-validator');
-const Nekosan = require('../models/nekosan');
+const Nekosan = require('../models/nekosans');
 const db = require('../models/index');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
@@ -47,6 +47,7 @@ router.get('/', (req, res, next) => {
     db.sequelize.sync()
     .then(() => db.Nekosan.create({
       name: req.body.name,
+      userId: req.body.userid,
       age: req.body.age,
       food: req.body.food,
       personality: req.body.personality,

@@ -11,10 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Nekosan.belongsTo(models.User,{
+        foreignKey:'userId',
+        as        :'users'
+      })
     }
   };
   Nekosan.init({
     name: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
     age: DataTypes.STRING,
     food: DataTypes.STRING,
     personality: DataTypes.STRING,
@@ -23,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Nekosan',
+    tableName: 'nekosan'
   });
   return Nekosan;
 };
