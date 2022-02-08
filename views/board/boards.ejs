@@ -1,32 +1,49 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8">
-    <title>ボード</title>
-    <link rel="stylesheet" href="/stylesheets/login.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/other.css">
     <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+    <title>ボード</title>
   </head>
   <body class="container">
      <%- include('../header'); %>
-      <div class="container-login">
-        <div class="panel">
-          <h1>ボード</h1>
-            <form action="/login/post" method="post">
-              <div class="form-group">
-                <input type="text" name="username" id="username" value="" class="form-control" placeholder="Username">
-              </div>
-              <div class="form-group">
-                <input type="text" name="email" id="email" value="" class="form-control" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <input type="password" name="password" id="password" value="" class="form-control" placeholder="Password">
-              </div>
-              <div>
-                <input type="submit" value="ログインする">
-              </div>
-          </form>
+      <div role="main">
         </div>
-      </div>
+          <div class="management_container">
+            <table border="" bordercolor="#EEEEEE" class="management_table">
+                <tr>
+                    <td colspan="5" class="boke"><p><%= username %> さんだよね</p></td>
+                </tr>
+                <tr>
+                    <th bgcolor="">ID</th>
+                    <th bgcolor="">ユーザーID</th>
+                    <th bgcolor="">Message</th>
+                    <th bgcolor="">編集</th>
+                    <th bgcolor="">削除</th>
+                </tr>
+                    <% for(var i in content){ %>
+                    <tr>
+                        <% var obj = content[i]; %>
+                        <td><%= obj.id %></td>
+                        <td><%= obj.userId %></td>
+                        <td><%= obj.message %></td>
+                        <td>
+                            <a href="#">くわしく</a>
+                        </td>
+                        <td><form action="#" method="POST">
+                                <input type="hidden" name="id" value="#">
+                                <button type="submit" value="削除" class="btn2">✔</button>
+                            </form>
+                        </td>
+                    </tr>
+                        <% } %>
+            </table>
+        </div>
+    </div>
+    <div class="neko">
+      <a href="../../add" class="btn-a">もふもふの猫さん</a>
+  </div>
     <%- include('../footer'); %>
   </body>
 </html>
