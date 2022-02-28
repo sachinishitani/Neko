@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <title>ボード</title>
-    <link rel="stylesheet" href="/stylesheets/login.css">
-    <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
-  </head>
-  <body class="container">
-     <%- include('../header'); %>
-      <div class="container-login">
-        <div class="panel">
-          <h1>ボード</h1>
-            <form action="/login/post" method="post">
-              <div class="form-group">
-                <input type="text" name="username" id="username" value="" class="form-control" placeholder="Username">
-              </div>
-              <div class="form-group">
-                <input type="text" name="email" id="email" value="" class="form-control" placeholder="Email">
-              </div>
-              <div class="form-group">
-                <input type="password" name="password" id="password" value="" class="form-control" placeholder="Password">
-              </div>
-              <div>
-                <input type="submit" value="ログインする">
-              </div>
-          </form>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/stylesheets/other.css">
+        <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+        <title>ボード</title>
+    </head>
+    <body class="container">
+        <%- include('../header'); %>
+        <div role="main">
+            <div>
+            </div>
+            <div class="management_container">
+                <table border="" bordercolor="#EEEEEE" class="management_table">
+                    <tr>
+                        <td colspan="7" class="boke"><p><%= username %> さんのねこさんたちについて</p></td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="">ID</th>
+                        <th bgcolor="">名前</th>
+                        <th bgcolor="">年齢</th>
+                        <th bgcolor="">ご飯</th>
+                        <th bgcolor="">性格</th>
+                        <th bgcolor="">編集</th>
+                        <th bgcolor="">削除</th>
+                    </tr>
+                        <% for(var i in content){ %>
+                        <tr>
+                            <% var obj = content[i]; %>
+                            <td><%= obj.id %></td>
+                            <td><%= obj.name %></td>
+                            <td><%= obj.age %></td>
+                            <td><%= obj.food %></td>
+                            <td><%= obj.personality %></td>
+                            <td>
+                                <a href="../../edit?id=<%= obj.id %>">くわしく</a>
+                            </td>
+                            <td><form action="../../other/delete" method="POST">
+                                    <input type="hidden" name="id" value="<%= obj.id %>">
+                                    <button type="submit" value="削除" class="btn2">✔</button>
+                                </form>
+                            </td>
+                        </tr>
+                            <% } %>
+                </table>
+            </div>
         </div>
-      </div>
-    <%- include('../footer'); %>
-  </body>
+        <div class="neko">
+            <a href="../../add" class="btn-a">My猫さんを登録</a>
+        </div>
+        <%- include('../footer'); %>
+    </body>
 </html>

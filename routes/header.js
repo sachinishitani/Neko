@@ -8,7 +8,7 @@ const User = require('../models/user');
 
 //このページに来た時
 router.get('/loguot',(req, res, next) => {
-console.log("ヘッダー");
+    console.log("ヘッダー");
 });
 
 module.exports = router;
