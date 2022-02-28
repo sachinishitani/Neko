@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
     Board.init({
-    userId: DataTypes.STRING,
+    user_id: DataTypes.STRING,
     message: DataTypes.STRING,
    
   }, {

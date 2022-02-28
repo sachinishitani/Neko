@@ -12,7 +12,7 @@ router.get('/login', (req, res, next) => {
     title:'User/Login',
     content:'名前とパスワードをいれてね。'
   }
-res.render('users/login', data);
+  res.render('users/login', data);
 });
 
 router.post('/login', (req, res, next)=> {
@@ -38,7 +38,5 @@ router.post('/login', (req, res, next)=> {
     }
   })
 });
-
-
 
 module.exports = router;

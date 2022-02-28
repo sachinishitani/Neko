@@ -25,5 +25,17 @@
   },
   "devDependencies": {
     "express-session": "^1.17.2"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sachinishitani/Neko.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sachinishitani/Neko/issues"
+  },
+  "homepage": "https://github.com/sachinishitani/Neko#readme",
+  "description": ""
 }

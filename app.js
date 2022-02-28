@@ -68,8 +68,7 @@ connection.query(
 // secure: false,
 //  maxage: 1000 * 60 * 30
 //  }
-//}); 
-//
+//});
 /////////////////////////////////////////////////////////////////////
 //var session_opt = {
 // secret: 'keyboard cat',
