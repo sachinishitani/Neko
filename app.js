@@ -12,7 +12,7 @@ var session = require('express-session');
 const flash = require('connect-flash');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users/users');
-var hello = require('./routes/hello');
+//var hello = require('./routes/hello');
 var other = require('./routes/other');
 //var auth = require('./routes/auth');
 //var loginTrue = require('./routes/login-true');
@@ -24,8 +24,8 @@ var login = require('./routes/login');
 var signup = require('./routes/signup');
 var header = require('./routes/header');
 var neko = require('./routes/neko');
-var boards = require('./routes/boards');
-var test = require('./routes/test/boards');
+var boards = require('./routes/board/boards');
+var error = require('./routes/error');
 /////////////////////////////////////////////
 const authMiddleware = (req, res, next) => {
   if(req.isAuthenticated()) { // ログインしてるかチェック
@@ -68,19 +68,18 @@ connection.query(
 // secure: false,
 //  maxage: 1000 * 60 * 30
 //  }
-//}); 
-//
+//});
 /////////////////////////////////////////////////////////////////////
 //var session_opt = {
- // secret: 'keyboard cat',
-  //resave: false,
-  //saveUninitialized: false,
-  //cookie: { maxAge: 60 * 60 * 1000 }
+// secret: 'keyboard cat',
+//resave: false,
+//saveUninitialized: false,
+//cookie: { maxAge: 60 * 60 * 1000 }
 //};
 //app.use(session(session_opt));
 //////20211203/////ここから///
 //app.use(session({
- // secret: 'YOUR-SECRET-STRING',
+// secret: 'YOUR-SECRET-STRING',
 //  resave: true,
 //  saveUninitialized: true
 //}));
@@ -101,6 +100,7 @@ cookie: {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+//app.set('board', path.join(__dirname, 'views/board'));
 app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
@@ -110,7 +110,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users/users', usersRouter);
-app.use('/hello', hello);
+//app.use('/hello', hello);
 app.use('/other', other);
 app.use('/index', index);
 
@@ -120,8 +120,10 @@ app.use('/login', login);
 app.use('/signup', signup);
 app.use('/header', header);
 app.use('/neko', neko);
-app.use('/boards', boards);
-app.use('/boards/boards', test);
+app.use('/board/boards', boards);
+//app.use('/error', error);
+
+
 
 app.get('/logout',(req, res, next) => {
   console.log("ログアウト");

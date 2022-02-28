@@ -11,63 +11,50 @@ const User = require('../models/user');
 //このページに来た時
 router.get('/', (req, res, next) => {
   console.log("こっちはログイン画面のほう！");
-   //db.User.findAll().then(User => {
-   //  console.log(User);
-   //});
 
- 
-   // 宣言
-   let username;
-   // ログイン済かログインしていないかで表示の名前を変更する
-   // ログインしていない＝req.session.loginが存在しない
-   if (!req.session.login){
-     username = '未ログイン';
-   } else {
-     username = req.session.login.username;
-   };
-   res.render('login',{username:username})
-
- });
+  // 宣言
+  let username;
+  // ログイン済かログインしていないかで表示の名前を変更する
+  // ログインしていない＝req.session.loginが存在しない
+  if (!req.session.login){
+    username = '未ログイン';
+    res.render('login',{username:username})
+  } else {
+    username = req.session.login.username;
+    res.render('index',{username:username})};
+});
 
 //////////////////////////////////////////////
-  //ログイン処理
-  router.post('/post', (req, res, next) => {
-    console.log("ログインのPOST");
-  db.User.findOne({
-    where:{
-      username:req.body.username,
-      email: req.body.email,
-      password:req.body.password
-    }
-  }).then(user=>{
-    if(user != null) {
-      req.session.login = user;
-      console.log(req.session.login);
-      let back = req.session.back;
-      if(back == null){
-        back = '/other';
-      }
-      res.redirect(back);
-    } else {
-      var data = {
-        title:'ログイン',
-        content:'名前かパスワードに問題がありますよ～～'
-      }
-      res.render('/', data);
-    }
-  });
-  });
+//ログイン処理
+router.post('/post', (req, res, next) => {
 
-  /////////////////////////////////////////////
-//ログインする
-//router.get('/login', (req, res, next) => {
-//  console.log('ろぐいん');
-//  var data = {
-//    title:'Users/Login',
-//    content:'名前とパスワードをいれてね'
-//  }
-//  res.render('signup/login', data);
-//});
+  console.log("ログインのPOST");
+    db.User.findOne({where:{
+        username:req.body.username,
+        email: req.body.email,
+        password:req.body.password
+      }
+    }).then( user=>{
+      if(user != null) {
+          req.session.login = user;
+          console.log(req.session.login);
+          let back = req.session.back;
+
+          if(back == null){
+            back = '/other';
+          }
+          res.redirect(back);
+      } else {
+        var data = {
+          title:'ログイン',
+          content:'名前かパスワードに問題がありますよ～～'
+        }
+        res.render('/', data);
+      }
+    });
+
+});
+
 //////////////////////////////////////////////
 
 //router.post('/login', (req, res, next) => {
@@ -77,7 +64,7 @@ router.get('/', (req, res, next) => {
 //    username:req.body.username,
 //    email: req.body.email,
 //    password:req.body.password
-//  }/
+//  }
 
 //}).then(user=>{
 //  if(user != null) {
@@ -98,5 +85,4 @@ router.get('/', (req, res, next) => {
 //});
 //});
 
-
-  module.exports = router;
+module.exports = router;

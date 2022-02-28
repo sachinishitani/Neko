@@ -4,17 +4,17 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/stylesheets/other.css">
         <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
-        <title>あざー</title>
+        <title>ボード</title>
     </head>
     <body class="container">
-        <%- include('header'); %>
+        <%- include('../header'); %>
         <div role="main">
             <div>
             </div>
             <div class="management_container">
                 <table border="" bordercolor="#EEEEEE" class="management_table">
                     <tr>
-                        <td colspan="7" class="boke"><p><%= username %> さん みんなのねこさんたちについて</p></td>
+                        <td colspan="7" class="boke"><p><%= username %> さんのねこさんたちについて</p></td>
                     </tr>
                     <tr>
                         <th bgcolor="">ID</th>
@@ -34,9 +34,9 @@
                             <td><%= obj.food %></td>
                             <td><%= obj.personality %></td>
                             <td>
-                                <a href="../edit?id=<%= obj.id %>">くわしく</a>
+                                <a href="../../edit?id=<%= obj.id %>">くわしく</a>
                             </td>
-                            <td><form action="../other/delete" method="POST">
+                            <td><form action="../../other/delete" method="POST">
                                     <input type="hidden" name="id" value="<%= obj.id %>">
                                     <button type="submit" value="削除" class="btn2">✔</button>
                                 </form>
@@ -47,8 +47,8 @@
             </div>
         </div>
         <div class="neko">
-            <a href="../add" class="btn-a">猫さんを登録する</a>
+            <a href="../../add" class="btn-a">My猫さんを登録</a>
         </div>
-        <%- include('footer'); %>
+        <%- include('../footer'); %>
     </body>
 </html>
