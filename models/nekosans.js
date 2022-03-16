@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Nekosan.init({
     name: DataTypes.STRING,
+    neko_picture: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
     age: DataTypes.STRING,
     food: DataTypes.STRING,

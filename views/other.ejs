@@ -14,11 +14,12 @@
             <div class="management_container">
                 <table border="" bordercolor="#EEEEEE" class="management_table">
                     <tr>
-                        <td colspan="7" class="boke"><p><%= username %> さん みんなのねこさんたちについて</p></td>
+                        <td colspan="8" class="boke"><p><%= username %> さん みんなのねこさんたちについて</p></td>
                     </tr>
                     <tr>
                         <th bgcolor="">ID</th>
                         <th bgcolor="">名前</th>
+                        <th bgcolor="">写真</th>
                         <th bgcolor="">年齢</th>
                         <th bgcolor="">ご飯</th>
                         <th bgcolor="">性格</th>
@@ -30,6 +31,7 @@
                             <% var obj = content[i]; %>
                             <td><%= obj.id %></td>
                             <td><%= obj.name %></td>
+                            <td><%= obj.neko_picture %></td>
                             <td><%= obj.age %></td>
                             <td><%= obj.food %></td>
                             <td><%= obj.personality %></td>
