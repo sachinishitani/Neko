@@ -69,7 +69,7 @@ db.Nekosan.findByPk(req.body.id)
   .then(nekosan => {
     nekosan.name = req.body.name;
     nekosan.age = req.body.age;
-    nekosan.neko_picture = req.body.neko_picture;
+    nekosan.user_id = req.body.user_id;
     nekosan.food = req.body.food;
     nekosan.personality = req.body.personality;
     nekosan.favoriteToys = req.body.favoriteToys;
