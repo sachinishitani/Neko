@@ -41,6 +41,7 @@ router.post('/post', (req, res, next) => {
   db.sequelize.sync()
     .then(() => db.Nekosan.create({
       name: req.body.name,
+      neko_picture: req.body.neko_picture,
       user_id: req.body.user_id,
       age: req.body.age,
       food: req.body.food,
